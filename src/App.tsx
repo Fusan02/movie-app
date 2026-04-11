@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 
 function App() {
@@ -33,15 +34,24 @@ function App() {
         "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/oHaxzQXWSvIsctZfAYSW0tn54gQ.jpg",
     },
   ];
+
+  // 検索キーワードを保存する変数
+  const [keyword, setKeyword] = useState("");
+
   return (
     <div>
-      {defaultMovieList.map((movie) => (
-        <div key={movie.id}>
-          <h2>{movie.name}</h2>
-          <img src={movie.image} alt={movie.name} />
-          <p>{movie.overview}</p>
-        </div>
-      ))}
+      <input type="text" onChange={(e) => setKeyword(e.target.value)} />
+      <div>{keyword}</div>
+      {defaultMovieList
+        .filter((movie) => movie.name.includes(keyword))
+        .map((movie) => (
+          <div key={movie.id}>
+            <h2>{movie.name}</h2>
+            <img src={movie.image} alt={movie.name} />
+            <p>{movie.overview}</p>
+          </div>
+        ))
+      }
     </div>
   )
 }
