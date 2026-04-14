@@ -26,41 +26,45 @@ type MovieJson ={
 };
 
 function App() {
-  // movieList を取得してくる関数
-  const fetchMovieList = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=ja&page=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
-        },
+// 検索キーワードを保存する変数
+  const [keyword, setKeyword] = useState("");
+  // 取得した映画リストを保存する配列 
+  const [movieList, setMovieList] = useState<Movie[]>([]);
+
+  // useEffect を用いて keywoord が更新されたら際レンダリングをさせる.
+  useEffect(() => {
+    // movieList を取得してくる関数
+    const fetchMovieList = async () => {
+      const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+      let url = "";
+      if (keyword) {
+        url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ja&page=1`;
+      } else {
+        url = "https://api.themoviedb.org/3/movie/popular?language=ja&page=1";
       }
-    );
-    // await でデータが取得されるまで次の処理に進まないようにする.
-    const data = await response.json();
-    setMovieList(
-      data.results.map((movie: MovieJson) => ({
+      // await でデータが取得されるまで次の処理に進まないようにする.
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      });
+      const data = await response.json();
+      const result = data.results;
+      const movieList = result.map((movie: MovieJson) => ({
         id: movie.id,
         original_title: movie.original_title,
         poster_path: movie.poster_path,
-        overview: movie.overview,        
-      }))
-    );
-  };
-
-  // 検索キーワードを保存する変数
-  const [keyword, setKeyword] = useState("");
-  const [movieList, setMovieList] = useState<Movie[]>([]);
-
-  // useEffect
-  useEffect(() => {
+      }));
+      setMovieList(movieList);
+    };
+    
     fetchMovieList();
-  }, []);
+  }, [keyword]);
 
   return (
     <div>
-      <input type="text" onChange={(e) => setKeyword(e.target.value)} />
       <div>{keyword}</div>
+      <input type="text" onChange={(e) => setKeyword(e.target.value)} />
       {movieList
         .filter((movie) => movie.original_title.includes(keyword))
         .map((movie) => (
