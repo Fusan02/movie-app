@@ -6,9 +6,9 @@ function Header({
     children: React.ReactNode 
 }) {
     return (
-        <div>
-            <header>
-                <h1>MOVIEFLIX</h1>
+        <div className="app-bg">
+            <header className="app-header">
+                <h1 className="app-title">MOVIEFLIX</h1>
             </header>
             <main>{children}</main>
         </div>
