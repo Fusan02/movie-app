@@ -32,7 +32,7 @@
     margin: 0;
     padding: 48px 16px 0 16px;
     box-sizing: border-box;
-    padding: 0 100px;
+    padding: 100px 100px;
 }
 .movie-detail-backlink {
     display: inline-flex;

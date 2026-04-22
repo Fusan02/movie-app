@@ -111,10 +111,20 @@ function MovieDetail() {
                                     ))}
                                 </div>
                                 <div className="movie-detail-actions">
-                                    <button className="movie-detail-btn movie-detail-btn-primary">
+                                    <button
+                                        onClick={() => {
+                                            alert("未実装です");
+                                        }}
+                                        className="movie-detail-btn movie-detail-btn-primary"
+                                    >
                                         ▶︎ Watch Now
                                     </button>
-                                    <button className="movie-detail-btn">
+                                    <button
+                                        onClick={() => {
+                                            alert("未実装です");
+                                        }}
+                                        className="movie-detail-btn"
+                                    >
                                         + Add to My List
                                     </button>
                                 </div>
