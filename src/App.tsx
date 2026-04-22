@@ -1,30 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
-
-type Movie = {
-    id: string;
-    original_title: string;
-    poster_path: string;
-    overview: string;
-};
-
-type MovieJson = {
-    adult: boolean;
-    backdrop_path: string | null;
-    genre_ids: number[];
-    id: string;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string | null;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-};
+import type { Movie, MovieJson } from "./types";
 
 function App() {
     // 検索キーワードを保存する変数
@@ -100,7 +77,10 @@ function App() {
                         </div>
                     )}
                     <div className="hero-section-actions">
-                        <button className="hero-section-btn hero-section-btn-primary">
+                        <button
+                            onClick={() => alert("未実装です")}
+                            className="hero-section-btn hero-section-btn-primary"
+                        >
                             ▶︎ Play
                         </button>
                         <button className="hero-section-btn hero-section-btn-secondary">
