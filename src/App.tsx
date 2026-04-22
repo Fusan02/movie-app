@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
 import type { Movie, MovieJson } from "./types";
+import { Link } from "react-router";
 
 function App() {
     // 検索キーワードを保存する変数
@@ -46,6 +47,7 @@ function App() {
     }, [fetchMovieList]);
 
     // HeroScetion用のダミーデータ（君の名は）
+    const heroId = 372058;
     const heroTitle = "君の名は";
     const heroYear = 2016;
     const heroOverview =
@@ -78,14 +80,18 @@ function App() {
                     )}
                     <div className="hero-section-actions">
                         <button
-                            onClick={() => alert("未実装です")}
+                            onClick={() => {
+                                alert("未実装です");
+                            }}
                             className="hero-section-btn hero-section-btn-primary"
                         >
                             ▶︎ Play
                         </button>
-                        <button className="hero-section-btn hero-section-btn-secondary">
-                            More Info
-                        </button>
+                        <Link to={`/movies/${heroId}`}>
+                            <button className="hero-section-btn hero-section-btn-secondary">
+                                More Info
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </section>
