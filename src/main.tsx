@@ -1,10 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import MovieDetail from "./MovieDetail.tsx";
-import App from "./App.tsx";
-import Header from "./Header.tsx";
+import MovieDetail from "./pages/MovieDetail/MovieDetail.tsx";
+import App from "./pages/Home/App.tsx";
+import Header from "./components/Header/Header.tsx";
 
 const router = createBrowserRouter([
     {

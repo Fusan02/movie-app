@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import MovieCard from "./MovieCard";
-import type { Movie, MovieJson } from "./types";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import type { Movie, MovieJson } from "../../types";
 import { Link, useOutletContext } from "react-router";
+import { fetchMoviesByKeyword, fetchPopularMovies } from "../../api/movie";
 
 function App() {
     // 検索キーワードを保存する変数
@@ -10,41 +11,25 @@ function App() {
     // 取得した映画リストを保存する配列
     const [movieList, setMovieList] = useState<Movie[]>([]);
 
-    // useCallback を用いて keyword が更新されない限り同じ関数を使い回すように fetchMovieList関数を定義
-    const fetchMovieList = useCallback(async () => {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-        let url = "";
-        if (keyword) {
-            url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ja&page=1`;
-        } else {
-            url =
-                "https://api.themoviedb.org/3/movie/popular?language=ja&page=1";
-        }
-        // await でデータが取得されるまで次の処理に進まないようにする.
-        const response = await fetch(url, {
-            headers: {
-                Authorization: `Bearer ${API_KEY}`,
-            },
-        });
-        const data = await response.json();
-        const result = data.results;
-        const movieList = result.map((movie: MovieJson) => ({
-            id: movie.id,
-            original_title: movie.original_title,
-            poster_path: movie.poster_path,
-        }));
-        return movieList;
-    }, [keyword]);
-
     // useEffect を用いて keyword によって fetchMovieList が更新されたら再レンダリングする.
     useEffect(() => {
-        const loadMovieList = async () => {
-            const movieList = await fetchMovieList();
-            setMovieList(movieList);
+        const loadMovies = async () => {
+            // results の結果を keyword の有無で分岐させる.
+            const results = keyword
+                ? await fetchMoviesByKeyword(keyword)
+                : await fetchPopularMovies();
+
+            // Movie 型の movies に results の結果をマップしてそれぞれの必要な項目を取得しリスト化していく.
+            const movies: Movie[] = results.map((movie: MovieJson) => ({
+                id: movie.id,
+                original_title: movie.original_title,
+                poster_path: movie.poster_path,
+            }));
+            setMovieList(movies);
         };
 
-        loadMovieList();
-    }, [fetchMovieList]);
+        loadMovies();
+    }, [keyword]);
 
     // HeroScetion用のダミーデータ（君の名は）
     const heroId = 305143;

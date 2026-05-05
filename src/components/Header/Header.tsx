@@ -10,7 +10,7 @@ function Header() {
             <header className="app-header">
                 <h1
                     onClick={() => {
-                        window.location.reload();
+                        window.location.href = "/";
                     }}
                     className="app-title"
                     style={{ cursor: "pointer" }}

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import "./MovieDetail.css";
 import { ArrowLeft, Clock, Star } from "lucide-react";
-import type { MovieDetailJson, Movie } from "./types";
+import type { MovieDetailJson, Movie } from "../../types";
 
 function MovieDetail() {
     const { movieId } = useParams();

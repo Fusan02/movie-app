@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import "./App.css";
-import type { Movie } from "./types/index";
+import "../../pages/Home/App.css";
+import type { Movie } from "../../types/index";
 
 type Props = {
     movie: Movie;
