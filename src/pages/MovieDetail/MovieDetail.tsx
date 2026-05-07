@@ -1,45 +1,33 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import "./MovieDetail.css";
 import { ArrowLeft, Clock, Star } from "lucide-react";
 import type { MovieDetailJson, Movie } from "../../types";
+import { fetchMovieDetail } from "../../api/movie";
 
 function MovieDetail() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState<Movie | null>(null);
 
-    const fetchMovieDetail = useCallback(async () => {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?language=ja&page=1&append_to_response=credits`,
-            {
-                headers: {
-                    Authorization: `Bearer ${API_KEY}`,
-                },
-            },
-        );
-        const data = (await response.json()) as MovieDetailJson;
-        const movieDetails = {
-            id: data.id,
-            original_title: data.title,
-            poster_path: data.poster_path,
-            year: Number(data.release_date.split("-")[0]),
-            rating: data.vote_average,
-            runtime: data.runtime,
-            voteCount: data.vote_count,
-            overview: data.overview,
-            genres: data.genres.map((genre) => genre.name),
-        };
-        return movieDetails;
-    }, [movieId]);
-
     useEffect(() => {
-        const setMovieDetails = async () => {
-            const movieDetails = await fetchMovieDetail();
+        const loadMovieDetails = async () => {
+            const data = (await fetchMovieDetail(movieId)) as MovieDetailJson;
+            const movieDetails = {
+                id: data.id,
+                original_title: data.title,
+                poster_path: data.poster_path,
+                year: Number(data.release_date.split("-")[0]),
+                rating: data.vote_average,
+                runtime: data.runtime,
+                voteCount: data.vote_count,
+                overview: data.overview,
+                genres: data.genres.map((genre) => genre.name),
+            };
             setMovie(movieDetails);
         };
-        setMovieDetails();
-    }, [fetchMovieDetail]);
+
+        loadMovieDetails();
+    }, [movieId]);
 
     return (
         <div className="movie-detail-root">

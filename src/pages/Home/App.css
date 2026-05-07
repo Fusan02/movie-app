@@ -1,8 +1,7 @@
 body {
     background: hsl(0, 0%, 9%);
     margin: 0;
-    max-width: 100vw;
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -12,38 +11,35 @@ body {
         rgba(0, 0, 0, 0.7) 0%,
         transparent 100%
     );
+    box-sizing: border-box;
     width: 100%;
     opacity: 0.8;
-    padding-left: 2rem;
-    height: 50px;
+    padding-left: 60px;
+    height: 2.5vw;
     position: sticky;
     top: 0;
     display: flex;
-    margin-bottom: -50px;
+    align-items: center;
+    margin-bottom: -2.5vw;
     z-index: 9999;
 }
 
 .app-title {
     color: #e50914;
-    font-size: 40px;
-    font-weight: 900;
+    font-size: 1.8vw;
+    font-weight: bold;
     margin: 0;
 }
 
 .app-search-wrap {
     margin-left: auto;
-    padding-top: 15px;
     padding-right: 60px;
 }
 
-.hero-section-content {
-    position: relative;
-}
-
 .app-search {
-    width: 340px;
-    font-size: 1rem;
-    padding: 6px 20px;
+    width: 17vw;
+    font-size: 0.8vw;
+    padding: 0.3vw 1vw;
     border-radius: 8px;
     border: none;
     outline: none;
@@ -51,7 +47,7 @@ body {
     color: #fff;
     box-shadow: 0 2px 16px #0006;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.025vw;
     transition:
         box-shadow 0.2s,
         background 0.2s;
@@ -63,10 +59,10 @@ body {
 }
 
 .movie-row-section {
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
-    margin-top: -250px;
+    margin-top: -10vw;
     position: relative;
     padding-left: 60px;
     margin-bottom: 150px;
@@ -81,7 +77,6 @@ body {
 }
 .movie-row-scroll {
     display: flex;
-
     gap: 1.6rem;
     overflow-x: auto;
     scrollbar-width: none;
@@ -115,7 +110,6 @@ body {
     max-width: 100%;
     overflow: hidden;
     box-sizing: border-box;
-    width: 100%;
     height: 100%;
     position: relative;
 }
@@ -158,13 +152,15 @@ body {
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.32);
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
     .app-header {
         padding: 1.2rem 0 1.2rem 0;
+        height: auto;
+        margin-bottom: 0;
     }
     .app-title {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
     }
     .app-search {
         width: 94vw;
@@ -199,39 +195,22 @@ body {
     a:nth-of-type(2) .logo {
         animation: logo-spin infinite 20s linear;
     }
-}
+} */
 
-.card {
-    padding: 2em;
-}
 
-.read-the-docs {
-    color: #888;
+.main-wrapper {
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
 }
-
 .hero-section {
     position: relative;
-    width: 100vw;
-    min-height: auto;
-    aspect-ratio: 16 / 9;
-    background: #222;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    box-sizing: border-box;
 }
 .hero-section-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+    height: auto;
     filter: brightness(0.55);
-    z-index: 0;
 }
 .hero-section-gradient {
     position: absolute;
@@ -240,22 +219,22 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, transparent 50%, hsl(0, 0%, 9%) 100%);
-    opacity: 1;
     z-index: 1;
 }
 .hero-section-content {
-    position: relative;
+    position: absolute;
+    bottom: 20%;
+    left: 60px;
     z-index: 2;
-    padding: 56px 0 250px 60px;
-    max-width: 700px;
+    max-width: 35.3vw;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 1.2vw;
 }
 .hero-section-title {
-    font-size: 3rem;
+    font-size: 2.5vw;
     font-weight: 800;
-    margin: 0 0 10px 0;
+    margin: 0 0 0.5vw 0;
     letter-spacing: 1px;
 }
 .hero-section-badges {
@@ -268,12 +247,12 @@ body {
     color: #fff;
     border-radius: 6px;
     padding: 2px 12px;
-    font-size: 15px;
+    font-size: 0.8vw;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 .hero-section-overview {
-    font-size: 1.1rem;
+    font-size: 1.3vw;
     color: #e4e4e4;
     margin-bottom: 20px;
     text-shadow: 0 2px 16px #000a;
@@ -283,10 +262,10 @@ body {
     gap: 14px;
 }
 .hero-section-btn {
-    font-size: 1rem;
+    font-size: 1vw;
     font-weight: 700;
     border-radius: 6px;
-    padding: 12px 28px;
+    padding: 0.6vw 1.4vw;
     border: none;
     cursor: pointer;
     background: #fff;

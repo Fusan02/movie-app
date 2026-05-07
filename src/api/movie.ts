@@ -19,3 +19,12 @@ export async function fetchMoviesByKeyword(keyword: string) {
     const data = await res.json();
     return data.results;
 }
+
+export async function fetchMovieDetail(movieId: string | undefined) {
+    const res = await fetch(
+        `${BASE_URL}/movie/${movieId}?language=ja&page=1&append_to_response=credits`,
+        { headers },
+    );
+    const data = await res.json();
+    return data;
+}

@@ -58,54 +58,58 @@ function App() {
                 </section>
             ) : (
                 <>
-                    <section className="hero-section">
-                        {heroImage && (
-                            <>
-                                <img
-                                    className="hero-section-bg"
-                                    src={heroImage}
-                                    alt={heroTitle}
-                                />
-                                <div className="hero-section-gradient" />
-                            </>
-                        )}
-                        <div className="hero-section-content">
-                            <h1 className="hero-section-title">{heroTitle}</h1>
-                            <div className="hero-section-badges">
-                                <span className="hero-section-badges">
-                                    {heroYear}
-                                </span>
-                            </div>
-                            {heroOverview && (
-                                <div className="hero-section-overview">
-                                    {heroOverview}
-                                </div>
+                    <div className="main-wrapper">
+                        <section className="hero-section">
+                            {heroImage && (
+                                <>
+                                    <img
+                                        className="hero-section-bg"
+                                        src={heroImage}
+                                        alt={heroTitle}
+                                    />
+                                    <div className="hero-section-gradient" />
+                                </>
                             )}
-                            <div className="hero-section-actions">
-                                <button
-                                    onClick={() => {
-                                        alert("未実装です");
-                                    }}
-                                    className="hero-section-btn hero-section-btn-primary"
-                                >
-                                    ▶︎ Play
-                                </button>
-                                <Link to={`/movies/${heroId}`}>
-                                    <button className="hero-section-btn hero-section-btn-secondary">
-                                        More Info
+                            <div className="hero-section-content">
+                                <h1 className="hero-section-title">
+                                    {heroTitle}
+                                </h1>
+                                <div className="hero-section-badges">
+                                    <span className="hero-section-badge">
+                                        {heroYear}
+                                    </span>
+                                </div>
+                                {heroOverview && (
+                                    <div className="hero-section-overview">
+                                        {heroOverview}
+                                    </div>
+                                )}
+                                <div className="hero-section-actions">
+                                    <button
+                                        onClick={() => {
+                                            alert("未実装です");
+                                        }}
+                                        className="hero-section-btn hero-section-btn-primary"
+                                    >
+                                        ▶︎ Play
                                     </button>
-                                </Link>
+                                    <Link to={`/movies/${heroId}`}>
+                                        <button className="hero-section-btn hero-section-btn-secondary">
+                                            More Info
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                    <section className="movie-row-section">
-                        <h2 className="movie-row-title">人気映画</h2>
-                        <div className="movie-row-scroll">
-                            {movieList.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} />
-                            ))}
-                        </div>
-                    </section>
+                        </section>
+                        <section className="movie-row-section">
+                            <h2 className="movie-row-title">人気映画</h2>
+                            <div className="movie-row-scroll">
+                                {movieList.map((movie) => (
+                                    <MovieCard key={movie.id} movie={movie} />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
                 </>
             )}
         </div>
