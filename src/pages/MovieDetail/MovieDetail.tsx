@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import "./MovieDetail.css";
 import { ArrowLeft, Clock, Star } from "lucide-react";
 import type { MovieDetailJson, Movie } from "../../types";
 import { fetchMovieDetail } from "../../api/movie";
+import { useQuery } from "@tanstack/react-query";
 
 function MovieDetail() {
     const { movieId } = useParams();
-    const [movie, setMovie] = useState<Movie | null>(null);
 
-    useEffect(() => {
-        const loadMovieDetails = async () => {
+    const {
+        data: movie,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["movie", movieId],
+        queryFn: async () => {
             const data = (await fetchMovieDetail(movieId)) as MovieDetailJson;
-            const movieDetails = {
+            return {
                 id: data.id,
                 original_title: data.title,
                 poster_path: data.poster_path,
@@ -22,12 +26,12 @@ function MovieDetail() {
                 voteCount: data.vote_count,
                 overview: data.overview,
                 genres: data.genres.map((genre) => genre.name),
-            };
-            setMovie(movieDetails);
-        };
+            } as Movie;
+        },
+    });
 
-        loadMovieDetails();
-    }, [movieId]);
+    if (isLoading) return <p>読み込み中...</p>;
+    if (isError) return <p>エラーが発生しました</p>;
 
     return (
         <div className="movie-detail-root">

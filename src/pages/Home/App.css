@@ -5,6 +5,10 @@ body {
     overflow-x: hidden;
 }
 
+button {
+    cursor: pointer;
+}
+
 .app-header {
     background: linear-gradient(
         to bottom,

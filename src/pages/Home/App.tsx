@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import type { Movie, MovieJson } from "../../types";
 import { Link, useOutletContext } from "react-router";
 import { fetchMoviesByKeyword, fetchPopularMovies } from "../../api/movie";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
     // 検索キーワードを保存する変数
     const { keyword } = useOutletContext<{ keyword: string }>();
-    // 取得した映画リストを保存する配列
-    const [movieList, setMovieList] = useState<Movie[]>([]);
 
-    // useEffect を用いて keyword によって fetchMovieList が更新されたら再レンダリングする.
-    useEffect(() => {
-        const loadMovies = async () => {
-            // results の結果を keyword の有無で分岐させる.
+    const {
+        data: movieList = [],
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["movies", keyword], // keyword が変わると自動で再フェッチ
+        queryFn: async () => {
             const results = keyword
                 ? await fetchMoviesByKeyword(keyword)
                 : await fetchPopularMovies();
 
-            // Movie 型の movies に results の結果をマップしてそれぞれの必要な項目を取得しリスト化していく.
-            const movies: Movie[] = results.map((movie: MovieJson) => ({
+            return results.map((movie: MovieJson) => ({
                 id: movie.id,
                 original_title: movie.original_title,
                 poster_path: movie.poster_path,
-            }));
-            setMovieList(movies);
-        };
+            })) as Movie[];
+        },
+    });
 
-        loadMovies();
-    }, [keyword]);
+    if (isLoading) return <p>読み込み中...</p>;
+    if (isError) return <p>エラーが発生しました</p>;
 
     // HeroScetion用のダミーデータ（君の名は）
     const heroId = 305143;
