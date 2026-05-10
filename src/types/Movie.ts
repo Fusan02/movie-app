@@ -2,12 +2,14 @@ export type Movie = {
     id: string;
     original_title: string;
     poster_path: string;
+    backdrop_path: string | null;
     overview: string;
     year: number;
     rating: number;
     runtime: number;
     voteCount: number;
     genres: string[];
+    release_date: string;
 };
 
 export type MovieJson = {

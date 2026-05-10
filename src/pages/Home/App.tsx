@@ -4,6 +4,7 @@ import type { Movie, MovieJson } from "../../types";
 import { Link, useOutletContext } from "react-router";
 import { fetchMoviesByKeyword, fetchPopularMovies } from "../../api/movie";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 function App() {
     // 検索キーワードを保存する変数
@@ -24,21 +25,28 @@ function App() {
                 id: movie.id,
                 original_title: movie.original_title,
                 poster_path: movie.poster_path,
+                backdrop_path: movie.backdrop_path,
+                overview: movie.overview,
+                release_date: movie.release_date,
             })) as Movie[];
         },
     });
 
+    const [heroIndex] = useState(() => Math.floor(Math.random() * 20));
+    const heroMovie =
+        movieList.length > 0 ? movieList[heroIndex % movieList.length] : null;
+
     if (isLoading) return <p>読み込み中...</p>;
     if (isError) return <p>エラーが発生しました</p>;
 
-    // HeroScetion用のダミーデータ（君の名は）
-    const heroId = 305143;
-    const heroTitle = "クレヨンしんちゃん ガチンコ!逆襲のロボとーちゃん";
-    const heroYear = 2014;
-    const heroOverview =
-        "ぎっくり腰になったひろしは、美人の誘いに乗せられて、マッサージを兼ねたエステの無料体験を受けることに。すっきりして家に帰ったひろしだったが、どうもみさえやしんのすけの反応がおかしい。鏡に映った姿を見ると、なんとひろしはロボットになっていた！　やがて野原一家は、これが立場の弱くなった日本の父親たちの復権をたくらむ秘密結社「父よ、勇気で立ち上がれ同盟」、略称“父ゆれ同盟”による陰謀だと知る。";
-    const heroImage =
-        "https://occ-0-5088-988.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABSBSmZrSlRdbArcK61Lmeee7Q3sWaUqGlD5D9aXvaXaQAOVqvQdvfCgUW7aGdGKTd8ZlrDthjnzdWkaszxfzMBmij2qoggqEFNYnUJ0avg.webp?r=7b9";
+    // HeroScetion のデータ
+    const heroId = heroMovie?.id;
+    const heroTitle = heroMovie?.original_title;
+    const heroYear = heroMovie?.year;
+    const heroOverview = heroMovie?.overview;
+    const heroImage = heroMovie?.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${heroMovie.backdrop_path}`
+        : null;
 
     return (
         <div>
