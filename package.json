@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "keyword": "node scripts/fetch-movie.js",
+    "id": "node scripts/fetch-movie.js --id"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.9",
