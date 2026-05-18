@@ -42,7 +42,7 @@ function App() {
     // HeroScetion のデータ
     const heroId = heroMovie?.id;
     const heroTitle = heroMovie?.original_title;
-    const heroYear = heroMovie?.year;
+    const heroYear = heroMovie?.release_date;
     const heroOverview = heroMovie?.overview;
     const heroImage = heroMovie?.backdrop_path
         ? `https://image.tmdb.org/t/p/original${heroMovie.backdrop_path}`
@@ -99,7 +99,8 @@ function App() {
                                         }}
                                         className="hero-section-btn hero-section-btn-primary"
                                     >
-                                        ▶︎ Play
+                                        <span>▶︎</span>
+                                        <span>Play</span>
                                     </button>
                                     <Link to={`/movies/${heroId}`}>
                                         <button className="hero-section-btn hero-section-btn-secondary">

@@ -18,13 +18,13 @@ button {
     box-sizing: border-box;
     width: 100%;
     opacity: 0.8;
-    padding-left: 60px;
-    height: 2.5vw;
+    padding-left: 3.5vw;
+    height: 4.0vw;
     position: sticky;
     top: 0;
     display: flex;
     align-items: center;
-    margin-bottom: -2.5vw;
+    margin-bottom: -4.0vw;
     z-index: 9999;
 }
 
@@ -37,7 +37,7 @@ button {
 
 .app-search-wrap {
     margin-left: auto;
-    padding-right: 60px;
+    padding-right: 3.5vw;
 }
 
 .app-search {
@@ -68,20 +68,20 @@ button {
     box-sizing: border-box;
     margin-top: -10vw;
     position: relative;
-    padding-left: 60px;
+    padding-left: 3.5vw;
     margin-bottom: 150px;
     z-index: 10;
 }
 
 .movie-row-title {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.56vw;
     font-weight: 700;
     letter-spacing: 1px;
 }
 .movie-row-scroll {
     display: flex;
-    gap: 1.6rem;
+    gap: 1.92vw;
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -92,9 +92,7 @@ button {
 .movie-card {
     display: block;
     position: relative;
-    min-width: 180px;
-    width: 180px;
-    height: 270px;
+    min-width: 13.5vw;
     border-radius: 14px;
     overflow: hidden;
     background: #232323;
@@ -149,7 +147,7 @@ button {
 }
 .movie-card__title {
     color: #fff;
-    font-size: 1.09rem;
+    font-size: 1.2vw;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin: 0;
@@ -228,7 +226,7 @@ button {
 .hero-section-content {
     position: absolute;
     bottom: 20%;
-    left: 60px;
+    left: 3.5vw;
     z-index: 2;
     max-width: 35.3vw;
     display: flex;
@@ -243,7 +241,7 @@ button {
 }
 .hero-section-badges {
     display: flex;
-    gap: 10px;
+    gap: 0.75vw;
     margin-bottom: 8px;
 }
 .hero-section-badge {
@@ -268,20 +266,21 @@ button {
 }
 .hero-section-actions {
     display: flex;
-    gap: 14px;
+    gap: 1.05vw;
 }
 .hero-section-btn {
     font-size: 1vw;
     font-weight: 700;
     border-radius: 6px;
-    padding: 0.6vw 1.4vw;
+    padding: 1.0vw 1.8vw;
     border: none;
     cursor: pointer;
     background: #fff;
     color: #111;
     display: flex;
+    gap: 0.6vw;
+    line-height: 1;
     align-items: center;
-    gap: 8px;
     transition:
         background 0.2s,
         color 0.2s;
@@ -295,10 +294,10 @@ button {
     color: #fff;
 }
 .hero-section-btn-secondary {
-    background: #232323;
+    background: #444;
     color: #fff;
 }
 .hero-section-btn-secondary:hover {
-    background: #444;
+    background: #232323;
     color: #fff;
 }

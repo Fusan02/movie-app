@@ -67,11 +67,11 @@ function MovieDetail() {
                                 />
                             </div>
                             <div className="movie-detail-details">
-                                <h1 className="movie-dettail-title">
+                                <h1 className="movie-detail-title">
                                     {movie.original_title}
                                 </h1>
                                 <div className="movie-detail-badges">
-                                    <span className="badges-outile">
+                                    <span className="badges-outline">
                                         {movie.year}
                                     </span>
                                     <span className="badges-outline">
@@ -86,7 +86,7 @@ function MovieDetail() {
                                     </span>
                                     <span className="badges-outline">
                                         <Star
-                                            className="badge-icon-svg badge-star"
+                                            className="badges-icon-svg badges-star"
                                             size={14}
                                         />
                                         {(movie.rating / 10).toFixed(1)}
@@ -97,7 +97,7 @@ function MovieDetail() {
                                 </p>
                                 <div className="movie-detail-genres">
                                     {movie.genres.map((g) => (
-                                        <span key={g} className="badge-genre">
+                                        <span key={g} className="badges-genre">
                                             {g}
                                         </span>
                                     ))}
